@@ -1,0 +1,1160 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>منصة سيبويه الرقمية — معاً نحو علوم اللغة</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Tajawal:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0b1120;--bg2:#111827;--bg3:#1a2535;--bg4:#243040;
+  --gold:#c9962a;--gold2:#e8b84b;--gold3:#f5d98a;
+  --teal:#0891b2;--teal2:#22d3ee;
+  --violet:#7c3aed;--green:#16a34a;--red:#dc2626;
+  --txt:#eee8d8;--txt2:#9ca3a0;--txt3:#6b7280;
+  --bdr:rgba(255,255,255,.07);
+}
+html{scroll-behavior:smooth}
+body{font-family:'Tajawal',sans-serif;background:var(--bg);color:var(--txt);min-height:100vh;overflow-x:hidden}
+::-webkit-scrollbar{width:5px}::-webkit-scrollbar-thumb{background:var(--gold);border-radius:3px}
+
+/* ── LAYOUT ── */
+.app{min-height:100vh;display:flex;flex-direction:column}
+.page{display:none;animation:fadeIn .3s ease}
+.page.active{display:block}
+@keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+
+/* ── MOTTO ── */
+.motto{background:linear-gradient(90deg,rgba(201,150,42,.08),rgba(8,145,178,.08));border-bottom:1px solid rgba(201,150,42,.15);text-align:center;padding:7px;font-size:.78rem;color:var(--gold3);font-family:'Amiri',serif;letter-spacing:.5px}
+
+/* ── TOPBAR ── */
+.bar{position:sticky;top:0;z-index:200;background:rgba(11,17,32,.95);backdrop-filter:blur(16px);border-bottom:1px solid var(--bdr)}
+.bar-in{max-width:1380px;margin:0 auto;padding:0 1.5rem;height:64px;display:flex;align-items:center;gap:1rem}
+.logo{display:flex;align-items:center;gap:10px;cursor:pointer;text-decoration:none;flex-shrink:0}
+.logo-m{width:42px;height:42px;border-radius:10px;background:linear-gradient(135deg,var(--gold),#7a4808);display:flex;align-items:center;justify-content:center;font-family:'Amiri',serif;font-size:1.4rem;color:#fff;box-shadow:0 0 24px rgba(201,150,42,.2);flex-shrink:0}
+.logo-t{font-family:'Amiri',serif;font-size:1rem;color:var(--gold2);line-height:1.25}
+.logo-s{font-size:.6rem;color:var(--txt3)}
+.nav{display:flex;align-items:center;gap:3px;margin-right:auto;flex-wrap:wrap}
+.nb{background:transparent;border:1px solid transparent;color:var(--txt2);padding:6px 12px;border-radius:8px;cursor:pointer;font-family:'Tajawal',sans-serif;font-size:.83rem;font-weight:500;transition:all .2s;white-space:nowrap}
+.nb:hover,.nb.on{background:rgba(201,150,42,.1);border-color:rgba(201,150,42,.3);color:var(--gold2)}
+.nb.cta{background:var(--gold);color:var(--bg);font-weight:800;border-color:var(--gold)}
+.nb.cta:hover{background:var(--gold2)}
+.nb.out{color:#f87171;border-color:rgba(248,113,113,.2)}
+.nb.out:hover{background:rgba(248,113,113,.08)}
+
+/* ── HERO ── */
+.hero{position:relative;overflow:hidden;padding:5rem 2rem 4rem;text-align:center;background:radial-gradient(ellipse 70% 50% at 50% -5%,rgba(201,150,42,.13),transparent 65%),var(--bg)}
+.hero-chip{display:inline-flex;align-items:center;gap:7px;background:rgba(201,150,42,.1);border:1px solid rgba(201,150,42,.28);color:var(--gold2);padding:5px 15px;border-radius:20px;font-size:.77rem;font-weight:600;margin-bottom:1.5rem}
+.hero h1{font-family:'Amiri',serif;font-size:clamp(2rem,5.5vw,3.8rem);color:var(--txt);line-height:1.3;margin-bottom:.5rem}
+.hero h1 b{color:var(--gold2)}
+.hero-name{font-family:'Amiri',serif;font-size:1.2rem;color:var(--teal2);margin-bottom:1.2rem}
+.hero-desc{color:var(--txt2);font-size:.98rem;max-width:600px;margin:0 auto 2rem;line-height:2}
+.hero-row{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+
+/* ── QUOTE ── */
+.quote{background:linear-gradient(135deg,var(--bg2),var(--bg3));border-top:1px solid rgba(201,150,42,.15);border-bottom:1px solid rgba(201,150,42,.15);padding:2rem;text-align:center}
+.quote-t{font-family:'Amiri',serif;font-size:1.35rem;color:var(--gold3);line-height:2;margin-bottom:.4rem}
+.quote-s{font-size:.78rem;color:var(--txt3)}
+
+/* ── PROF ── */
+.prof{background:var(--bg2);border-bottom:1px solid var(--bdr);padding:2rem}
+.prof-in{max-width:900px;margin:0 auto;display:flex;align-items:center;gap:2rem;flex-wrap:wrap;justify-content:center}
+.prof-av{width:96px;height:96px;border-radius:50%;background:linear-gradient(135deg,var(--gold),#6b3606);display:flex;align-items:center;justify-content:center;font-size:2.8rem;border:3px solid var(--gold2);box-shadow:0 0 24px rgba(201,150,42,.2);flex-shrink:0}
+.prof-name{font-family:'Amiri',serif;font-size:1.7rem;color:var(--gold2);margin-bottom:4px}
+.prof-meta{color:var(--txt2);font-size:.86rem;line-height:2}
+.tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.tag{background:rgba(201,150,42,.08);border:1px solid rgba(201,150,42,.2);color:var(--gold3);padding:2px 9px;border-radius:20px;font-size:.7rem}
+
+/* ── SECTION ── */
+.sec{padding:3.5rem 2rem;max-width:1380px;margin:0 auto;width:100%}
+.sec-title{font-family:'Amiri',serif;font-size:1.9rem;color:var(--gold2);text-align:center;margin-bottom:.4rem}
+.sec-sub{color:var(--txt2);text-align:center;font-size:.86rem;margin-bottom:.6rem}
+.hr{width:52px;height:3px;background:linear-gradient(90deg,var(--gold),var(--gold2));border-radius:2px;margin:0 auto 2.5rem}
+
+/* ── BUTTONS ── */
+.btn{display:inline-flex;align-items:center;gap:7px;padding:10px 22px;border-radius:10px;border:none;cursor:pointer;font-family:'Tajawal',sans-serif;font-size:.9rem;font-weight:700;transition:all .22s;white-space:nowrap;text-decoration:none}
+.bg{background:var(--gold);color:var(--bg)}.bg:hover{background:var(--gold2);transform:translateY(-2px);box-shadow:0 6px 20px rgba(201,150,42,.3)}
+.bo{background:transparent;color:var(--gold2);border:1.5px solid var(--gold)}.bo:hover{background:rgba(201,150,42,.08);transform:translateY(-2px)}
+.bt{background:var(--teal);color:#fff}.bt:hover{background:var(--teal2);color:var(--bg)}
+.bv{background:var(--violet);color:#fff}.bv:hover{filter:brightness(1.15)}
+.bgh{background:transparent;color:var(--txt2);border:1px solid var(--bdr)}.bgh:hover{border-color:var(--gold);color:var(--gold2)}
+.bgr{background:var(--green);color:#fff}.bgr:hover{filter:brightness(1.1)}
+.br{background:var(--red);color:#fff}.br:hover{filter:brightness(1.1)}
+.sm{padding:7px 13px;font-size:.8rem;border-radius:8px}
+.xs{padding:5px 10px;font-size:.74rem;border-radius:6px}
+.btn:disabled{opacity:.4;cursor:not-allowed;transform:none!important}
+
+/* ── GRID ── */
+.g2{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem}
+.g3{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:1.25rem}
+.g4{display:grid;grid-template-columns:repeat(auto-fit,minmax(165px,1fr));gap:1rem}
+
+/* ── CARD ── */
+.card{background:var(--bg2);border:1px solid var(--bdr);border-radius:14px;padding:1.5rem;transition:all .25s;position:relative;overflow:hidden}
+.card:hover{border-color:rgba(201,150,42,.28);box-shadow:0 8px 32px rgba(0,0,0,.5)}
+.ct::before{content:'';position:absolute;top:0;left:0;right:0;height:3px}
+.ct-g::before{background:linear-gradient(90deg,var(--gold),var(--gold2))}
+.ct-t::before{background:linear-gradient(90deg,var(--teal),var(--teal2))}
+.ct-v::before{background:linear-gradient(90deg,var(--violet),#a855f7)}
+.ct-gr::before{background:linear-gradient(90deg,var(--green),#4ade80)}
+.cc{cursor:pointer}.cc:hover{transform:translateY(-5px);box-shadow:0 12px 40px rgba(0,0,0,.5)}
+.ci{width:50px;height:50px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-family:'Amiri',serif;font-size:1.4rem;font-weight:700;color:#fff;margin-bottom:.9rem}
+.ctitle{font-family:'Amiri',serif;font-size:1.4rem;color:var(--txt);margin-bottom:2px}
+.csub{color:var(--txt2);font-size:.8rem;margin-bottom:.9rem}
+.pbar{height:5px;background:var(--bg4);border-radius:3px;overflow:hidden;margin-top:8px}
+.pf{height:100%;background:linear-gradient(90deg,var(--gold),var(--gold2));border-radius:3px;transition:width .5s}
+.cm{display:flex;gap:1rem;font-size:.73rem;color:var(--txt3);margin-top:.65rem}
+
+/* ── TABS ── */
+.tabs{display:flex;gap:3px;background:var(--bg3);border-radius:10px;padding:4px;margin-bottom:1.5rem;flex-wrap:wrap}
+.tab{flex:1;min-width:70px;padding:8px 5px;text-align:center;border-radius:7px;cursor:pointer;font-size:.81rem;color:var(--txt2);border:none;background:transparent;font-family:'Tajawal',sans-serif;font-weight:500;transition:all .2s}
+.tab.on{background:var(--gold);color:var(--bg);font-weight:800}
+.tab:hover:not(.on){color:var(--txt);background:rgba(255,255,255,.04)}
+
+/* ── LECTURE ROW ── */
+.lr{background:var(--bg2);border:1px solid var(--bdr);border-radius:10px;padding:.95rem 1.2rem;margin-bottom:.6rem;display:flex;align-items:center;gap:.9rem;transition:all .2s}
+.lr:hover:not(.lk){border-color:rgba(201,150,42,.28);background:var(--bg3)}
+.lk{opacity:.45;cursor:not-allowed}
+.ln{width:36px;height:36px;border-radius:9px;flex-shrink:0;background:linear-gradient(135deg,var(--gold),#7a4808);display:flex;align-items:center;justify-content:center;font-weight:800;color:var(--bg);font-size:.83rem}
+.li{flex:1}.li h4{font-size:.91rem;color:var(--txt);margin-bottom:1px}.li p{font-size:.72rem;color:var(--txt3)}
+.bds{display:flex;gap:4px;align-items:center;flex-wrap:wrap}
+.bai{display:inline-flex;align-items:center;background:rgba(8,145,178,.14);border:1px solid rgba(8,145,178,.28);color:#67e8f9;padding:2px 7px;border-radius:20px;font-size:.67rem}
+.bdn{background:rgba(22,163,74,.14);border:1px solid rgba(22,163,74,.28);color:#4ade80;padding:2px 7px;border-radius:20px;font-size:.67rem}
+.bpdf{background:rgba(234,88,12,.14);border:1px solid rgba(234,88,12,.28);color:#fb923c;padding:2px 7px;border-radius:20px;font-size:.67rem}
+
+/* ── PDF ── */
+.pdfbox{background:var(--bg3);border:1px solid var(--bdr);border-radius:10px;overflow:hidden;margin-bottom:1.5rem}
+.pdfbar{display:flex;align-items:center;gap:10px;padding:10px 14px;background:rgba(201,150,42,.06);border-bottom:1px solid var(--bdr)}
+.pdfbar span{color:var(--gold2);font-size:.84rem;font-weight:600;flex:1}
+.pdfframe{width:100%;height:500px;border:none}
+.upz{border:2px dashed rgba(201,150,42,.22);border-radius:10px;padding:2.5rem;text-align:center;color:var(--txt2);cursor:pointer;transition:all .2s;background:rgba(201,150,42,.02)}
+.upz:hover{border-color:var(--gold);color:var(--gold2);background:rgba(201,150,42,.05)}
+.upz input{display:none}
+
+/* ── QUIZ ── */
+.qbox{background:var(--bg2);border:1px solid var(--bdr);border-radius:14px;padding:1.5rem}
+.qhdr{display:flex;align-items:center;gap:10px;margin-bottom:1.2rem;flex-wrap:wrap}
+.qhdr h3{font-family:'Amiri',serif;font-size:1.3rem;color:var(--gold2)}
+.qcard{background:var(--bg3);border-radius:10px;padding:1.15rem;margin-bottom:.85rem;border:1px solid var(--bdr)}
+.qcard p{font-size:.92rem;color:var(--txt);font-weight:600;margin-bottom:.8rem}
+.qopts{display:flex;flex-direction:column;gap:6px}
+.qo{display:flex;align-items:flex-start;gap:9px;padding:9px 13px;background:var(--bg2);border-radius:8px;cursor:pointer;transition:all .2s;border:1.5px solid transparent;font-size:.86rem;color:var(--txt2);line-height:1.5}
+.qo:hover{border-color:var(--gold);color:var(--txt)}
+.qo.sel{border-color:var(--teal);background:rgba(8,145,178,.1);color:var(--txt)}
+.qo.ok{border-color:var(--green);background:rgba(22,163,74,.12);color:#4ade80}
+.qo.bad{border-color:var(--red);background:rgba(220,38,38,.1);color:#f87171}
+.qo input{flex-shrink:0;margin-top:3px;accent-color:var(--gold)}
+.qexp{font-size:.79rem;color:var(--txt2);margin-top:.45rem;padding:.45rem .7rem;background:rgba(201,150,42,.06);border-radius:6px;border-right:3px solid var(--gold)}
+.sbox{text-align:center;padding:1.75rem}
+.sbig{font-size:3.8rem;font-weight:900;color:var(--gold2);line-height:1;font-family:'Amiri',serif}
+
+/* ── IRAB ── */
+.ibox{background:var(--bg2);border:1px solid var(--bdr);border-radius:14px;padding:1.5rem}
+.irow{display:flex;gap:10px;margin-bottom:1.2rem}
+.itable{width:100%;border-collapse:collapse;font-size:.83rem;margin-bottom:1rem}
+.itable th{background:var(--bg3);color:var(--gold2);padding:10px 13px;text-align:right;font-weight:700;border-bottom:1px solid rgba(201,150,42,.2)}
+.itable td{padding:10px 13px;border-bottom:1px solid var(--bdr);color:var(--txt2);vertical-align:top}
+.itable tr:hover td{background:rgba(255,255,255,.018)}
+.wc{display:inline-block;background:linear-gradient(135deg,var(--gold),#7a4808);color:var(--bg);padding:2px 11px;border-radius:20px;font-weight:800;font-family:'Amiri',serif;font-size:1rem}
+.isum{background:rgba(201,150,42,.07);border:1px solid rgba(201,150,42,.2);border-radius:10px;padding:1rem;color:var(--gold3);font-family:'Amiri',serif;font-size:1rem;line-height:1.9}
+.ex-s{font-family:'Amiri',serif;font-size:1.25rem;color:var(--gold3);text-align:center;margin-bottom:.7rem;padding:.7rem;background:rgba(201,150,42,.06);border-radius:8px;border:1px solid rgba(201,150,42,.15)}
+.ex-hint{font-size:.77rem;color:var(--teal2);margin-bottom:.7rem;padding:.45rem .7rem;background:rgba(8,145,178,.07);border-radius:6px;border-right:3px solid var(--teal)}
+.ex-ans{font-size:.84rem;color:var(--txt2);padding:.7rem;background:rgba(22,163,74,.07);border:1px solid rgba(22,163,74,.2);border-radius:8px;margin-top:.7rem;line-height:1.8;display:none}
+.ex-ans.show{display:block}
+
+/* ── DISCUSSION ── */
+.dp{background:var(--bg2);border:1px solid var(--bdr);border-radius:10px;padding:1.2rem;margin-bottom:.85rem;transition:border-color .2s}
+.dp.prf{border-color:rgba(201,150,42,.25);background:rgba(201,150,42,.03)}
+.dh{display:flex;align-items:center;gap:9px;margin-bottom:.75rem}
+.dav{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:.86rem;flex-shrink:0}
+.dav.p{background:linear-gradient(135deg,var(--gold),#7a4808);color:var(--bg)}
+.dav.s{background:linear-gradient(135deg,var(--teal),#085e74);color:#fff}
+.dauth{font-size:.87rem;font-weight:700;color:var(--txt)}
+.drole{font-size:.67rem;color:var(--gold2)}
+.dtime{font-size:.69rem;color:var(--txt3);margin-right:auto}
+.dctag{font-size:.67rem;background:rgba(201,150,42,.1);color:var(--gold3);padding:2px 7px;border-radius:10px}
+.dtxt{color:var(--txt);line-height:1.8;font-size:.89rem}
+.dacts{display:flex;gap:.9rem;margin-top:.7rem}
+.dact{background:none;border:none;color:var(--txt3);font-size:.76rem;cursor:pointer;display:flex;align-items:center;gap:3px;font-family:'Tajawal',sans-serif;transition:color .2s}
+.dact:hover{color:var(--gold2)}
+.ri{margin-top:.7rem;padding-right:1.4rem;border-right:2px solid rgba(201,150,42,.18)}
+.reply-row{display:flex;gap:8px;margin-top:.7rem}
+
+/* ── ANALYTICS ── */
+.abar{display:flex;align-items:center;gap:1rem;padding:.8rem 1rem;background:var(--bg3);border-radius:10px;margin-bottom:.55rem;border:1px solid var(--bdr)}
+.aname{font-weight:600;font-size:.86rem;color:var(--txt);width:140px;flex-shrink:0}
+.aprog{flex:1;height:7px;background:var(--bg4);border-radius:4px;overflow:hidden}
+.afill{height:100%;border-radius:4px;background:linear-gradient(90deg,var(--gold),var(--gold2));transition:width .6s}
+.apct{font-size:.78rem;color:var(--gold2);width:38px;text-align:left}
+
+/* ── TABLE ── */
+.tw{overflow-x:auto;border-radius:10px;border:1px solid var(--bdr)}
+table{width:100%;border-collapse:collapse;font-size:.82rem}
+th{background:var(--bg3);color:var(--gold2);padding:11px 14px;text-align:right;font-weight:700;border-bottom:1px solid rgba(201,150,42,.18)}
+td{padding:10px 14px;border-bottom:1px solid rgba(255,255,255,.035);color:var(--txt2)}
+tr:last-child td{border-bottom:none}
+tr:hover td{background:rgba(255,255,255,.015)}
+.st{display:inline-flex;padding:2px 9px;border-radius:20px;font-size:.7rem;font-weight:700}
+.stp{background:rgba(251,191,36,.1);color:#fbbf24;border:1px solid rgba(251,191,36,.25)}
+.sta{background:rgba(74,222,128,.1);color:#4ade80;border:1px solid rgba(74,222,128,.25)}
+.str{background:rgba(248,113,113,.1);color:#f87171;border:1px solid rgba(248,113,113,.25)}
+
+/* ── FORMS ── */
+.fg{margin-bottom:1rem}
+.fl{display:block;color:var(--txt2);font-size:.8rem;margin-bottom:4px;font-weight:500}
+.fi{width:100%;background:var(--bg3);border:1.5px solid rgba(255,255,255,.07);border-radius:10px;padding:9px 13px;color:var(--txt);font-family:'Tajawal',sans-serif;font-size:.91rem;direction:rtl;transition:border-color .2s}
+.fi:focus{outline:none;border-color:var(--gold);background:var(--bg2)}
+.fi::placeholder{color:var(--txt3);opacity:.7}
+textarea.fi{resize:vertical;min-height:80px}
+
+/* ── ALERTS ── */
+.al{padding:10px 14px;border-radius:8px;font-size:.82rem;margin-bottom:.9rem;line-height:1.7}
+.ali{background:rgba(8,145,178,.1);border:1px solid rgba(8,145,178,.25);color:#7dd3fc}
+.alo{background:rgba(74,222,128,.1);border:1px solid rgba(74,222,128,.25);color:#4ade80}
+.alw{background:rgba(251,191,36,.1);border:1px solid rgba(251,191,36,.25);color:#fbbf24}
+.ale{background:rgba(248,113,113,.1);border:1px solid rgba(248,113,113,.25);color:#f87171}
+
+/* ── MODAL ── */
+.ov{position:fixed;inset:0;background:rgba(0,0,0,.82);z-index:500;display:none;align-items:center;justify-content:center;padding:1rem;backdrop-filter:blur(8px)}
+.ov.open{display:flex;animation:fadeIn .25s ease}
+.md{background:var(--bg2);border:1px solid rgba(201,150,42,.2);border-radius:18px;padding:2rem;width:100%;max-width:500px;max-height:90vh;overflow-y:auto;box-shadow:0 40px 100px rgba(0,0,0,.7)}
+.mdl{max-width:760px}
+.mhdr{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.4rem}
+.mttl{font-family:'Amiri',serif;font-size:1.45rem;color:var(--gold2)}
+.mcl{background:transparent;border:none;color:var(--txt2);font-size:1.5rem;cursor:pointer;line-height:1;transition:color .2s}
+.mcl:hover{color:var(--red)}
+
+/* ── TOAST ── */
+#toast{position:fixed;top:18px;left:50%;transform:translateX(-50%);background:var(--bg3);border:1px solid var(--gold);border-radius:12px;padding:11px 20px;font-size:.86rem;color:var(--txt);z-index:999;box-shadow:0 8px 40px rgba(0,0,0,.6);display:flex;align-items:center;gap:8px;max-width:90vw;opacity:0;transition:opacity .3s;pointer-events:none}
+#toast.show{opacity:1}
+
+/* ── SPINNER ── */
+.spin{display:inline-block;width:18px;height:18px;border:3px solid rgba(201,150,42,.2);border-top-color:var(--gold);border-radius:50%;animation:rot .7s linear infinite;vertical-align:middle}
+@keyframes rot{to{transform:rotate(360deg)}}
+
+/* ── EMPTY ── */
+.empty{text-align:center;padding:3rem;color:var(--txt3)}
+.eic{font-size:2.6rem;margin-bottom:.7rem;opacity:.35}
+
+/* ── SETUP ── */
+.step{display:flex;gap:1rem;padding:1.1rem;background:var(--bg3);border-radius:10px;margin-bottom:.75rem;border:1px solid var(--bdr)}
+.sn{width:29px;height:29px;border-radius:50%;background:var(--gold);color:var(--bg);display:flex;align-items:center;justify-content:center;font-weight:900;font-size:.83rem;flex-shrink:0;margin-top:2px}
+.step h4{color:var(--txt);font-size:.9rem;margin-bottom:3px}
+.step p{color:var(--txt2);font-size:.79rem;line-height:1.75}
+code{background:rgba(201,150,42,.1);color:var(--gold2);padding:2px 6px;border-radius:4px;font-size:.79rem}
+
+/* ── FOOTER ── */
+.foot{background:var(--bg2);border-top:1px solid var(--bdr);padding:1.75rem;text-align:center;color:var(--txt3);font-size:.78rem;line-height:2.1;margin-top:auto}
+.ftit{font-family:'Amiri',serif;font-size:1.15rem;color:var(--gold2);margin-bottom:.2rem}
+.fmot{color:var(--teal2);font-size:.8rem;margin-top:.4rem}
+
+@media(max-width:768px){
+  .bar-in{flex-wrap:wrap;height:auto;padding:10px 1rem;gap:6px}
+  .nav{flex-wrap:wrap;justify-content:center}
+  .hero{padding:3rem 1rem 2.5rem}
+  .sec{padding:2rem 1rem}
+  .irow{flex-direction:column}
+}
+</style>
+</head>
+<body>
+<div class="app">
+
+<!-- MOTTO -->
+<div class="motto">✦ 🤖 الذكاء الاصطناعي شريكٌ لا بديلٌ عن الإنسان ✦</div>
+
+<!-- TOPBAR -->
+<header class="bar">
+  <div class="bar-in">
+    <div class="logo" onclick="showPage('home')">
+      <div class="logo-m">س</div>
+      <div>
+        <div class="logo-t">منصة سيبويه الرقمية</div>
+        <div class="logo-s">معاً نحو علوم اللغة بالتقنية الرقمية</div>
+      </div>
+    </div>
+    <nav class="nav" id="main-nav">
+      <button class="nb on" onclick="showPage('home')">الرئيسية</button>
+    </nav>
+  </div>
+</header>
+
+<!-- TOAST -->
+<div id="toast"></div>
+
+<!-- ══════════════ PAGE: HOME ══════════════ -->
+<div id="page-home" class="page active">
+  <section class="hero">
+    <div class="hero-chip">🏛️ جامعة ابن خلدون — تيارت، الجزائر</div>
+    <h1>منصة <b>سيبويه</b> الرقمية</h1>
+    <div class="hero-name">أ.د. بن جلول مختار — أستاذ اللسانيات العربية</div>
+    <p class="hero-desc">بيئة تعلم رقمية متكاملة لتعليم النحو والصرف — محاضرات PDF، تمارين تفاعلية، تحليل آلي للجمل، وتقييم بالذكاء الاصطناعي</p>
+    <div class="hero-row" id="hero-btns">
+      <button class="btn bg" onclick="openModal('modal-register')">🎓 سجّل الآن</button>
+      <button class="btn bo" onclick="openModal('modal-login')">دخول المنصة ←</button>
+    </div>
+  </section>
+  <div class="quote">
+    <div class="quote-t">«وهذا باب علم ما الكلم من العربية»</div>
+    <div class="quote-s">سيبويه — الكتاب، الجزء الأول</div>
+  </div>
+  <div class="prof">
+    <div class="prof-in">
+      <div class="prof-av">👨‍🏫</div>
+      <div>
+        <div class="prof-name">أ.د. بن جلول مختار</div>
+        <div class="prof-meta">أستاذ اللسانيات العربية · جامعة ابن خلدون، تيارت، الجزائر</div>
+        <div class="tags">
+          <span class="tag">مخبر الدراسات النحوية واللغوية</span>
+          <span class="tag">بين التراث والحداثة في الجزائر</span>
+          <span class="tag">علم النحو</span><span class="tag">علم الصرف</span>
+          <span class="tag">تحليل النصوص</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <section class="sec">
+    <h2 class="sec-title">المنصة في أرقام</h2>
+    <div class="hr"></div>
+    <div class="g4">
+      <div class="card ct ct-g" style="text-align:center"><div style="font-size:1.6rem;margin-bottom:.35rem">👥</div><div id="stat-students" style="font-size:2.4rem;font-weight:900;color:var(--gold2);line-height:1">2</div><div style="color:var(--txt2);font-size:.76rem;margin-top:4px">طالب مقيّد</div></div>
+      <div class="card ct ct-g" style="text-align:center"><div style="font-size:1.6rem;margin-bottom:.35rem">📚</div><div style="font-size:2.4rem;font-weight:900;color:var(--gold2);line-height:1">4</div><div style="color:var(--txt2);font-size:.76rem;margin-top:4px">مقرر دراسي</div></div>
+      <div class="card ct ct-g" style="text-align:center"><div style="font-size:1.6rem;margin-bottom:.35rem">📄</div><div id="stat-lecs" style="font-size:2.4rem;font-weight:900;color:var(--gold2);line-height:1">0</div><div style="color:var(--txt2);font-size:.76rem;margin-top:4px">محاضرة منشورة</div></div>
+      <div class="card ct ct-g" style="text-align:center"><div style="font-size:1.6rem;margin-bottom:.35rem">🔬</div><div style="font-size:2.4rem;font-weight:900;color:var(--gold2);line-height:1">AI</div><div style="color:var(--txt2);font-size:.76rem;margin-top:4px">محلل إعراب ذكي</div></div>
+    </div>
+  </section>
+  <section class="sec" style="padding-top:0">
+    <h2 class="sec-title">فضاءات المنصة</h2>
+    <div class="hr"></div>
+    <div class="g2">
+      <div class="card ct ct-g"><div style="font-size:2rem;margin-bottom:.65rem">📚</div><h3 style="color:var(--gold2);font-family:'Amiri',serif;font-size:1.15rem;margin-bottom:.4rem">فضاء المقررات</h3><p style="color:var(--txt2);font-size:.82rem;line-height:1.8">النحو 1 والنحو 2 والصرف وتحليل النصوص — كل مقرر يضم محاضرات PDF واختبارات ومنتدى نقاش.</p></div>
+      <div class="card ct ct-t"><div style="font-size:2rem;margin-bottom:.65rem">✍️</div><h3 style="color:var(--gold2);font-family:'Amiri',serif;font-size:1.15rem;margin-bottom:.4rem">فضاء التمارين</h3><p style="color:var(--txt2);font-size:.82rem;line-height:1.8">تمارين الإعراب والاختيار مع توليد تلقائي بالذكاء الاصطناعي.</p></div>
+      <div class="card ct ct-v"><div style="font-size:2rem;margin-bottom:.65rem">🔬</div><h3 style="color:var(--gold2);font-family:'Amiri',serif;font-size:1.15rem;margin-bottom:.4rem">محلل الإعراب الآلي</h3><p style="color:var(--txt2);font-size:.82rem;line-height:1.8">اكتب أي جملة عربية واحصل فوراً على إعرابها الكامل جدولياً بالذكاء الاصطناعي.</p></div>
+      <div class="card ct ct-gr"><div style="font-size:2rem;margin-bottom:.65rem">📊</div><h3 style="color:var(--gold2);font-family:'Amiri',serif;font-size:1.15rem;margin-bottom:.4rem">تحليلات التعلم</h3><p style="color:var(--txt2);font-size:.82rem;line-height:1.8">الأستاذ يرى نسبة إنجاز كل طالب ونتائج الاختبارات — Learning Analytics.</p></div>
+      <div class="card ct ct-g"><div style="font-size:2rem;margin-bottom:.65rem">💬</div><h3 style="color:var(--gold2);font-family:'Amiri',serif;font-size:1.15rem;margin-bottom:.4rem">فضاء النقاش</h3><p style="color:var(--txt2);font-size:.82rem;line-height:1.8">نقاشات علمية منظمة حسب المقرر بين الطلبة والأستاذ.</p></div>
+      <div class="card ct ct-t"><div style="font-size:2rem;margin-bottom:.65rem">✉️</div><h3 style="color:var(--gold2);font-family:'Amiri',serif;font-size:1.15rem;margin-bottom:.4rem">إشعارات بريدية</h3><p style="color:var(--txt2);font-size:.82rem;line-height:1.8">بريد قبول أو رفض التسجيل مع رابط المنصة — مدعوم بـ EmailJS.</p></div>
+    </div>
+  </section>
+</div>
+
+<!-- ══════════════ PAGE: COURSES ══════════════ -->
+<div id="page-courses" class="page">
+  <div id="courses-list-view">
+    <div class="sec">
+      <h2 class="sec-title">المقررات الدراسية</h2>
+      <p class="sec-sub">أربعة مقررات متخصصة في علوم اللغة العربية</p>
+      <div class="hr"></div>
+      <div class="g2" id="courses-grid"></div>
+    </div>
+  </div>
+  <div id="course-detail-view" style="display:none">
+    <div class="sec">
+      <button class="btn bgh sm" style="margin-bottom:1.5rem" onclick="showCoursesGrid()">← المقررات</button>
+      <div id="course-detail-header" style="display:flex;align-items:center;gap:1rem;margin-bottom:2rem;flex-wrap:wrap"></div>
+      <div id="course-lecs-list"></div>
+    </div>
+  </div>
+  <div id="lec-view" style="display:none">
+    <div class="sec">
+      <button class="btn bgh sm" style="margin-bottom:1.5rem" onclick="showCourseDetail(currentCourseId)">← العودة</button>
+      <div id="lec-view-content"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════ PAGE: EXERCISES ══════════════ -->
+<div id="page-exercises" class="page">
+  <div class="sec">
+    <h2 class="sec-title">فضاء التمارين التفاعلية</h2>
+    <p class="sec-sub">تمارين الإعراب — مولَّدة بالذكاء الاصطناعي</p>
+    <div class="hr"></div>
+    <div class="card ct ct-t" style="margin-bottom:1.5rem">
+      <h3 style="color:var(--teal2);margin-bottom:1rem;font-family:'Amiri',serif">اختر موضوعاً أو اكتب موضوعك</h3>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:1rem" id="ex-presets"></div>
+      <div style="display:flex;gap:10px">
+        <input class="fi" id="ex-topic" placeholder="أو اكتب موضوعاً مخصصاً...">
+        <button class="btn bt" onclick="generateExercises()">🤖 توليد</button>
+      </div>
+    </div>
+    <div id="ex-results"><div class="empty"><div class="eic">✍️</div><p>اختر موضوعاً لتوليد التمارين</p></div></div>
+  </div>
+</div>
+
+<!-- ══════════════ PAGE: IRAB ══════════════ -->
+<div id="page-irab" class="page">
+  <div class="sec" style="max-width:900px">
+    <h2 class="sec-title">🔬 محلل الإعراب الآلي</h2>
+    <p class="sec-sub">أدخل أي جملة عربية للحصول على إعرابها الكامل فوراً</p>
+    <div class="hr"></div>
+    <div class="al ali" style="margin-bottom:1.5rem">💡 هذه الميزة مدعومة بالذكاء الاصطناعي — <strong>الذكاء الاصطناعي شريكٌ لا بديلٌ عن الإنسان</strong>، راجع دائماً مع أستاذك.</div>
+    <div class="ibox">
+      <h3 style="color:var(--gold2);font-family:'Amiri',serif;margin-bottom:1rem">أمثلة جاهزة</h3>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:1.2rem" id="irab-examples"></div>
+      <div class="irow">
+        <input class="fi" id="irab-input" style="flex:1;font-family:'Amiri',serif;font-size:1.1rem;text-align:center" placeholder="اكتب الجملة هنا..." onkeydown="if(event.key==='Enter') analyzeIrab()">
+        <button class="btn bv" onclick="analyzeIrab()">🔬 إعراب</button>
+      </div>
+      <div id="irab-err" style="display:none" class="al ale" style="margin-top:1rem"></div>
+      <div id="irab-result" style="margin-top:1.5rem;display:none"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════ PAGE: DISCUSSION ══════════════ -->
+<div id="page-disc" class="page">
+  <div class="sec">
+    <h2 class="sec-title">فضاء النقاش العلمي</h2>
+    <p class="sec-sub">تبادل الأفكار والتساؤلات حول المقررات</p>
+    <div class="hr"></div>
+    <div class="tabs" id="disc-tabs"></div>
+    <div class="card" style="margin-bottom:1.75rem">
+      <h3 style="color:var(--gold2);margin-bottom:1rem;font-size:.93rem">مشاركة جديدة</h3>
+      <textarea class="fi" id="disc-new-txt" placeholder="اكتب سؤالك أو مداخلتك العلمية..." style="margin-bottom:.7rem"></textarea>
+      <button class="btn bg sm" onclick="postDisc()">نشر 💬</button>
+    </div>
+    <div id="disc-list"></div>
+  </div>
+</div>
+
+<!-- ══════════════ PAGE: DASHBOARD ══════════════ -->
+<div id="page-dashboard" class="page">
+  <div class="sec">
+    <h2 class="sec-title">لوحة تحكم الأستاذ</h2>
+    <div class="hr"></div>
+    <div class="g4" style="margin-bottom:2rem">
+      <div class="card" style="text-align:center"><div id="dash-pending" style="font-size:2.3rem;font-weight:900;color:#fbbf24;line-height:1">0</div><div style="color:var(--txt2);font-size:.76rem;margin-top:4px">طلبات معلقة</div></div>
+      <div class="card" style="text-align:center"><div id="dash-approved" style="font-size:2.3rem;font-weight:900;color:#4ade80;line-height:1">0</div><div style="color:var(--txt2);font-size:.76rem;margin-top:4px">طلاب مقبولون</div></div>
+      <div class="card" style="text-align:center"><div id="dash-rejected" style="font-size:2.3rem;font-weight:900;color:#f87171;line-height:1">0</div><div style="color:var(--txt2);font-size:.76rem;margin-top:4px">مرفوضون</div></div>
+      <div class="card" style="text-align:center"><div id="dash-lecs" style="font-size:2.3rem;font-weight:900;color:var(--gold2);line-height:1">0</div><div style="color:var(--txt2);font-size:.76rem;margin-top:4px">محاضرة منشورة</div></div>
+    </div>
+    <div class="tabs">
+      <button class="tab on" onclick="dashTab(0,this)">⏳ معلق</button>
+      <button class="tab" onclick="dashTab(1,this)">✅ مقبول</button>
+      <button class="tab" onclick="dashTab(2,this)">❌ مرفوض</button>
+    </div>
+    <div class="tw"><table><thead><tr><th>الاسم</th><th>البريد</th><th>الجامعة</th><th>التاريخ</th><th>الحالة</th><th>إجراء</th></tr></thead><tbody id="dash-tbody"></tbody></table></div>
+  </div>
+</div>
+
+<!-- ══════════════ PAGE: ANALYTICS ══════════════ -->
+<div id="page-analytics" class="page">
+  <div class="sec">
+    <h2 class="sec-title">📊 تحليلات التعلم</h2>
+    <p class="sec-sub">Learning Analytics — متابعة تقدم الطلاب</p>
+    <div class="hr"></div>
+    <div class="g4" id="analytics-courses" style="margin-bottom:2rem"></div>
+    <div class="card">
+      <h3 style="color:var(--gold2);font-family:'Amiri',serif;margin-bottom:1.2rem">تقدم الطلاب المقبولين</h3>
+      <div id="analytics-list"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════ PAGE: SETUP ══════════════ -->
+<div id="page-setup" class="page">
+  <div class="sec" style="max-width:800px">
+    <h2 class="sec-title">⚙️ دليل الإعداد والنشر</h2>
+    <div class="hr"></div>
+    <div class="al ali" style="margin-bottom:2rem">هذه الصفحة للأستاذ فقط — اتبع الخطوات لربط Firebase وEmailJS ونشر المنصة.</div>
+    <h3 style="color:var(--gold2);font-family:'Amiri',serif;font-size:1.3rem;margin-bottom:1rem;border-bottom:1px solid var(--bdr);padding-bottom:.5rem">١. إعداد Firebase</h3>
+    <div class="step"><div class="sn">1</div><div><h4>إنشاء مشروع</h4><p>اذهب إلى <code>console.firebase.google.com</code> ← Add Project ← أدخل اسم المنصة.</p></div></div>
+    <div class="step"><div class="sn">2</div><div><h4>تفعيل Firestore</h4><p>Build ← Firestore Database ← Create Database ← <code>production mode</code></p></div></div>
+    <div class="step"><div class="sn">3</div><div><h4>تفعيل Storage لرفع PDF</h4><p>Build ← Storage ← Get Started — لرفع ملفات المحاضرات.</p></div></div>
+    <div class="step"><div class="sn">4</div><div><h4>نسخ الإعدادات</h4><p>Project Settings ← General ← Your Apps ← Web App ← انسخ <code>firebaseConfig</code> وضعها في كود الصفحة.</p></div></div>
+    <h3 style="color:var(--teal2);font-family:'Amiri',serif;font-size:1.3rem;margin:2rem 0 1rem;border-bottom:1px solid var(--bdr);padding-bottom:.5rem">٢. إعداد EmailJS</h3>
+    <div class="step"><div class="sn">1</div><div><h4>إنشاء حساب مجاني</h4><p><code>emailjs.com</code> ← Sign Up — 200 بريد/شهر مجاناً.</p></div></div>
+    <div class="step"><div class="sn">2</div><div><h4>ربط Gmail الجامعي</h4><p>Email Services ← Add New Service ← Gmail ← أدخل بريدك الجامعي.</p></div></div>
+    <div class="step"><div class="sn">3</div><div><h4>قالب بريد القبول</h4><p>Templates ← Create: مرحباً <code>to_name</code>، تم قبولك. رابط المنصة: <code>platform_url</code></p></div></div>
+    <div class="step"><div class="sn">4</div><div><h4>نسخ المفاتيح</h4><p>انسخ <code>serviceId</code> و<code>templateId</code> و<code>publicKey</code> وضعها في الكود.</p></div></div>
+    <h3 style="color:#a855f7;font-family:'Amiri',serif;font-size:1.3rem;margin:2rem 0 1rem;border-bottom:1px solid var(--bdr);padding-bottom:.5rem">٣. النشر</h3>
+    <div class="step"><div class="sn">1</div><div><h4>رفع الملف على GitHub</h4><p>أنشئ مستودعاً على <code>github.com</code> وارفع ملف HTML هذا مباشرةً.</p></div></div>
+    <div class="step"><div class="sn">2</div><div><h4>الربط بـ Vercel أو Netlify</h4><p><code>vercel.com</code> أو <code>netlify.com</code> ← Import Project ← Deploy مجاناً.</p></div></div>
+    <div class="step"><div class="sn">3</div><div><h4>رابطك الدائم</h4><p>ستحصل على رابط مثل: <code>sibawaih-platform.vercel.app</code></p></div></div>
+    <div class="al alo" style="margin-top:1.5rem">✅ بعد هذه الخطوات تصبح المنصة مباشرة بالكامل مع حفظ البيانات وإرسال البريد الحقيقي.</div>
+  </div>
+</div>
+
+<!-- ══════════════ MODAL: LOGIN ══════════════ -->
+<div class="ov" id="modal-login" onclick="if(event.target===this) closeModal('modal-login')">
+  <div class="md">
+    <div class="mhdr"><span class="mttl">تسجيل الدخول</span><button class="mcl" onclick="closeModal('modal-login')">×</button></div>
+    <div class="al ali" style="font-size:.76rem">الأستاذ: bendjalloul@univ-tiaret.dz / Sibawaih2025<br>طالب مقبول: youcef@etud.dz / 123456</div>
+    <div id="login-err" class="al ale" style="display:none"></div>
+    <div class="fg"><label class="fl">البريد الإلكتروني</label><input class="fi" id="login-email" type="email" placeholder="email@example.com"></div>
+    <div class="fg"><label class="fl">كلمة السر</label><input class="fi" id="login-pw" type="password" placeholder="••••••" onkeydown="if(event.key==='Enter') doLogin()"></div>
+    <button class="btn bg" style="width:100%" onclick="doLogin()">دخول ←</button>
+  </div>
+</div>
+
+<!-- ══════════════ MODAL: REGISTER ══════════════ -->
+<div class="ov" id="modal-register" onclick="if(event.target===this) closeModal('modal-register')">
+  <div class="md">
+    <div class="mhdr"><span class="mttl">طلب التسجيل</span><button class="mcl" onclick="closeModal('modal-register')">×</button></div>
+    <div class="al ali" style="margin-bottom:1rem">سيراجع الأستاذ طلبك ويرسل إليك بريداً بالنتيجة.</div>
+    <div class="fg"><label class="fl">الاسم الكامل</label><input class="fi" id="reg-name" placeholder="الاسم واللقب"></div>
+    <div class="fg"><label class="fl">البريد الإلكتروني</label><input class="fi" id="reg-email" type="email" placeholder="email@example.com"></div>
+    <div class="fg"><label class="fl">الجامعة / المؤسسة</label><input class="fi" id="reg-univ" placeholder="جامعة ابن خلدون تيارت"></div>
+    <div class="fg"><label class="fl">كلمة السر</label><input class="fi" id="reg-pw" type="password" placeholder="••••••"></div>
+    <button class="btn bg" style="width:100%" onclick="doRegister()">إرسال الطلب 📤</button>
+  </div>
+</div>
+
+<!-- ══════════════ MODAL: ADD LECTURE ══════════════ -->
+<div class="ov" id="modal-addlec" onclick="if(event.target===this) closeModal('modal-addlec')">
+  <div class="md mdl">
+    <div class="mhdr"><span class="mttl">إضافة محاضرة جديدة</span><button class="mcl" onclick="closeModal('modal-addlec')">×</button></div>
+    <div class="fg"><label class="fl">عنوان المحاضرة *</label><input class="fi" id="lec-title" placeholder="مثال: الفاعل ونائب الفاعل"></div>
+    <div class="fg"><label class="fl">وصف مختصر</label><input class="fi" id="lec-desc" placeholder="نبذة عن الموضوع"></div>
+    <div class="fg">
+      <label class="fl">ملف PDF</label>
+      <div class="upz" onclick="document.getElementById('lec-pdf').click()">
+        <div style="font-size:2rem;margin-bottom:.5rem">📄</div>
+        <div id="pdf-label"><strong>اضغط لرفع PDF</strong><br><small>أو اسحب الملف</small></div>
+        <input type="file" id="lec-pdf" accept=".pdf" onchange="handlePdfSelect(this)">
+      </div>
+    </div>
+    <div class="fg"><label class="fl">محتوى نصي (لتوليد الأسئلة)</label><textarea class="fi" id="lec-content" rows="4" placeholder="ملخص المحاضرة — كلما كان أوفر كانت الأسئلة أدق..."></textarea></div>
+    <div style="display:flex;gap:1rem;justify-content:flex-end">
+      <button class="btn bgh" onclick="closeModal('modal-addlec')">إلغاء</button>
+      <button class="btn bg" onclick="saveLecture()">إضافة ✅</button>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="foot">
+  <div class="ftit">منصة سيبويه الرقمية — معاً نحو علوم اللغة بالتقنية الرقمية</div>
+  <div>أ.د. بن جلول مختار — أستاذ اللسانيات العربية</div>
+  <div>جامعة ابن خلدون، تيارت، الجزائر</div>
+  <div style="opacity:.42;margin-top:2px">مخبر الدراسات النحوية واللغوية بين التراث والحداثة في الجزائر</div>
+  <div class="fmot">🤖 الذكاء الاصطناعي شريكٌ لا بديلٌ عن الإنسان</div>
+</footer>
+</div><!-- end .app -->
+
+<script>
+// ══════════════════════════════════════════════
+// STATE
+// ══════════════════════════════════════════════
+const ADMIN = { email:"bendjalloul@univ-tiaret.dz", pw:"Sibawaih2025" };
+
+let state = {
+  user: null,
+  currentPage: "home",
+  currentCourseId: null,
+  currentLecId: null,
+  dashTab: 0,
+  discFilter: "all",
+  lecPdfUrl: null,
+  quizAnswers: {},
+  quizSubmitted: false,
+  students: [
+    {id:"s1",name:"أحمد بن عمر",          email:"ahmed@etud.dz",  pw:"123456",status:"pending", date:"2025-03-01",univ:"جامعة ابن خلدون",prog:{}},
+    {id:"s2",name:"فاطمة الزهراء بلقاسم", email:"fatima@etud.dz", pw:"123456",status:"pending", date:"2025-03-03",univ:"جامعة تيارت",    prog:{}},
+    {id:"s3",name:"يوسف مسعود",           email:"youcef@etud.dz", pw:"123456",status:"approved",date:"2025-02-28",univ:"جامعة ابن خلدون",prog:{c1:60,c3:30}},
+    {id:"s4",name:"نور الهدى حمادي",      email:"nour@etud.dz",   pw:"123456",status:"approved",date:"2025-02-25",univ:"جامعة وهران",    prog:{c1:100,c2:45}},
+  ],
+  courses: [
+    {id:"c1",title:"النحو 1",      sub:"الأسس والمبادئ",           icon:"١",col:"#b8860b",lecs:[]},
+    {id:"c2",title:"النحو 2",      sub:"التراكيب المتقدمة",        icon:"٢",col:"#0891b2",lecs:[]},
+    {id:"c3",title:"علم الصرف",    sub:"بناء الكلمة العربية",      icon:"ص",col:"#7c3aed",lecs:[]},
+    {id:"c4",title:"تحليل النصوص", sub:"الإعراب والتحليل البلاغي", icon:"ن",col:"#16a34a",lecs:[]},
+  ],
+  disc: [
+    {id:"d1",author:"يوسف مسعود",       init:"ي",isProf:false,cid:"c1",text:"كيف نميّز بين الحال والتمييز؟",time:"منذ يومين",likes:5,replies:[]},
+    {id:"d2",author:"أ.د. بن جلول مختار",init:"م",isProf:true, cid:"c1",text:"الحال يبيّن هيئة صاحبه كـ«جاء مسرعاً»، والتمييز يرفع الإبهام كـ«عشرين كتاباً».",time:"منذ يومين",likes:11,replies:[]},
+    {id:"d3",author:"نور الهدى حمادي",  init:"ن",isProf:false,cid:"c3",text:"هل للميزان الصرفي أهمية في تحليل المشتقات؟",time:"منذ 3 أيام",likes:3,replies:[]},
+  ],
+};
+
+// ══════════════════════════════════════════════
+// AI
+// ══════════════════════════════════════════════
+async function aiCall(prompt, max=1000) {
+  const r = await fetch("https://api.anthropic.com/v1/messages",{
+    method:"POST",
+    headers:{"Content-Type":"application/json"},
+    body:JSON.stringify({model:"claude-sonnet-4-20250514",max_tokens:max,messages:[{role:"user",content:prompt}]})
+  });
+  const d = await r.json();
+  return d.content[0].text;
+}
+
+// ══════════════════════════════════════════════
+// TOAST
+// ══════════════════════════════════════════════
+function notify(msg, ic="✅") {
+  const t = document.getElementById("toast");
+  t.innerHTML = ic + " " + msg;
+  t.classList.add("show");
+  setTimeout(()=>t.classList.remove("show"), 3800);
+}
+
+// ══════════════════════════════════════════════
+// PAGE ROUTING
+// ══════════════════════════════════════════════
+function showPage(id) {
+  document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
+  const pg = document.getElementById("page-"+id);
+  if(pg){ pg.classList.add("active"); state.currentPage = id; }
+  // update nav
+  document.querySelectorAll(".nb[data-page]").forEach(b=>{
+    b.classList.toggle("on", b.dataset.page===id);
+  });
+  if(id==="home") document.querySelector(".nb[data-page='home']")?.classList.add("on");
+  if(id==="dashboard") renderDashboard();
+  if(id==="analytics") renderAnalytics();
+  if(id==="disc") renderDisc();
+  if(id==="courses") { showCoursesGrid(); }
+  window.scrollTo(0,0);
+}
+
+// ══════════════════════════════════════════════
+// NAV BUILD
+// ══════════════════════════════════════════════
+function buildNav() {
+  const u = state.user;
+  const isAdmin = u?.role==="admin";
+  const nav = document.getElementById("main-nav");
+  const items = [
+    {id:"home",label:"الرئيسية",always:true},
+    {id:"courses",label:"المقررات",auth:true},
+    {id:"exercises",label:"التمارين",auth:true},
+    {id:"irab",label:"🔬 الإعراب",auth:true},
+    {id:"disc",label:"النقاش",auth:true},
+    {id:"dashboard",label:"لوحة التحكم",admin:true},
+    {id:"analytics",label:"📊 التحليلات",admin:true},
+    {id:"setup",label:"⚙️ الإعداد",admin:true},
+  ];
+  let html = "";
+  items.forEach(it=>{
+    if(it.always || (it.auth && u) || (it.admin && isAdmin)){
+      html += `<button class="nb${state.currentPage===it.id?" on":""}" data-page="${it.id}" onclick="showPage('${it.id}')">${it.label}</button>`;
+    }
+  });
+  if(!u){
+    html += `<button class="nb" onclick="openModal('modal-login')">دخول</button>`;
+    html += `<button class="nb cta" onclick="openModal('modal-register')">تسجيل</button>`;
+  } else {
+    html += `<button class="nb out" onclick="doLogout()">خروج</button>`;
+  }
+  nav.innerHTML = html;
+  // hero btns
+  const hb = document.getElementById("hero-btns");
+  if(hb){
+    hb.innerHTML = u
+      ? `<button class="btn bg" onclick="showPage('courses')">📚 المقررات</button>`
+      : `<button class="btn bg" onclick="openModal('modal-register')">🎓 سجّل الآن</button>
+         <button class="btn bo" onclick="openModal('modal-login')">دخول المنصة ←</button>`;
+  }
+  updateStats();
+}
+
+function updateStats(){
+  const approved = state.students.filter(s=>s.status==="approved").length;
+  const lecs = state.courses.reduce((a,c)=>a+c.lecs.length,0);
+  const ss = document.getElementById("stat-students"); if(ss) ss.textContent=approved;
+  const sl = document.getElementById("stat-lecs"); if(sl) sl.textContent=lecs;
+}
+
+// ══════════════════════════════════════════════
+// AUTH
+// ══════════════════════════════════════════════
+function doLogin(){
+  const email = document.getElementById("login-email").value.trim();
+  const pw    = document.getElementById("login-pw").value;
+  const err   = document.getElementById("login-err");
+  err.style.display="none";
+  if(email===ADMIN.email && pw===ADMIN.pw){
+    state.user = {role:"admin",name:"أ.د. بن جلول مختار",email};
+    closeModal("modal-login");
+    buildNav(); showPage("dashboard");
+    notify("مرحباً أستاذ بن جلول! 👋"); return;
+  }
+  const s = state.students.find(x=>x.email===email && x.pw===pw);
+  if(!s){ err.textContent="البريد أو كلمة السر غير صحيحة"; err.style.display="block"; return; }
+  if(s.status==="pending"){ err.textContent="طلبك قيد المراجعة من قِبَل الأستاذ"; err.style.display="block"; return; }
+  if(s.status==="rejected"){ err.textContent="تم رفض طلب التسجيل"; err.style.display="block"; return; }
+  state.user = {role:"student",name:s.name,email:s.email};
+  closeModal("modal-login");
+  buildNav(); showPage("courses");
+  notify("مرحباً " + s.name + "! 👋");
+}
+
+function doLogout(){
+  state.user=null; state.currentPage="home";
+  buildNav(); showPage("home");
+}
+
+function doRegister(){
+  const name  = document.getElementById("reg-name").value.trim();
+  const email = document.getElementById("reg-email").value.trim();
+  const univ  = document.getElementById("reg-univ").value.trim();
+  const pw    = document.getElementById("reg-pw").value;
+  if(!name||!email||!pw) return;
+  state.students.push({id:"s"+Date.now(),name,email,univ,pw,status:"pending",date:new Date().toISOString().slice(0,10),prog:{}});
+  closeModal("modal-register");
+  notify("تم إرسال طلبك — انتظر موافقة الأستاذ 📤");
+}
+
+// ══════════════════════════════════════════════
+// MODAL
+// ══════════════════════════════════════════════
+function openModal(id){ document.getElementById(id).classList.add("open"); }
+function closeModal(id){ document.getElementById(id).classList.remove("open"); }
+
+// ══════════════════════════════════════════════
+// COURSES
+// ══════════════════════════════════════════════
+function showCoursesGrid(){
+  document.getElementById("courses-list-view").style.display="";
+  document.getElementById("course-detail-view").style.display="none";
+  document.getElementById("lec-view").style.display="none";
+  renderCoursesGrid();
+}
+
+function renderCoursesGrid(){
+  const g = document.getElementById("courses-grid"); if(!g) return;
+  g.innerHTML = state.courses.map(c=>{
+    const done = c.lecs.filter(l=>l.passed).length;
+    const pct  = c.lecs.length ? Math.round(done/c.lecs.length*100) : 0;
+    return `<div class="card ct ct-g cc" onclick="showCourseDetail('${c.id}')">
+      <div class="ci" style="background:linear-gradient(135deg,${c.col},${c.col}88)">${c.icon}</div>
+      <div class="ctitle">${c.title}</div>
+      <div class="csub">${c.sub}</div>
+      <div class="pbar"><div class="pf" style="width:${pct}%"></div></div>
+      <div class="cm"><span>📄 ${c.lecs.length} محاضرة</span><span>✅ ${done} مكتملة</span></div>
+    </div>`;
+  }).join("");
+}
+
+function showCourseDetail(cid){
+  state.currentCourseId = cid;
+  const c = state.courses.find(x=>x.id===cid);
+  document.getElementById("courses-list-view").style.display="none";
+  document.getElementById("course-detail-view").style.display="";
+  document.getElementById("lec-view").style.display="none";
+  // header
+  const hdr = document.getElementById("course-detail-header");
+  const isAdmin = state.user?.role==="admin";
+  hdr.innerHTML = `
+    <div class="ci" style="background:linear-gradient(135deg,${c.col},${c.col}88)">${c.icon}</div>
+    <div style="flex:1">
+      <h2 style="font-family:'Amiri',serif;font-size:1.75rem;color:var(--gold2)">${c.title}</h2>
+      <p style="color:var(--txt2);font-size:.83rem">${c.sub}</p>
+    </div>
+    ${isAdmin?`<button class="btn bg sm" onclick="openModal('modal-addlec')">+ إضافة محاضرة</button>`:""}
+  `;
+  // lecs
+  const ll = document.getElementById("course-lecs-list");
+  if(c.lecs.length===0){
+    ll.innerHTML=`<div class="empty"><div class="eic">📭</div><p>لم تُضف بعد محاضرات</p></div>`; return;
+  }
+  ll.innerHTML = c.lecs.map((l,i)=>{
+    const locked = state.user?.role==="student" && !l.unlocked;
+    return `<div class="lr${locked?" lk":""}">
+      <div class="ln">${i+1}</div>
+      <div class="li"><h4>${l.title}</h4><p>${l.description||"محاضرة نظرية"}${l.pdfUrl?" · PDF مرفق":""}</p></div>
+      <div class="bds">
+        ${l.pdfUrl?`<span class="bpdf">📄 PDF</span>`:""}
+        ${l.quiz?`<span class="bai">🤖 أسئلة</span>`:""}
+        ${l.passed?`<span class="bdn">✅ مكتملة</span>`:""}
+      </div>
+      ${!locked
+        ?`<button class="btn bg sm" onclick="openLec('${cid}','${l.id}')">${l.passed?"مراجعة":"دخول →"}</button>`
+        :`<span style="color:var(--txt3);font-size:1.2rem">🔒</span>`
+      }
+    </div>`;
+  }).join("");
+}
+
+function saveLecture(){
+  const title = document.getElementById("lec-title").value.trim();
+  if(!title) return;
+  const c = state.courses.find(x=>x.id===state.currentCourseId);
+  c.lecs.push({
+    id:"l"+Date.now(), title,
+    description: document.getElementById("lec-desc").value,
+    content:     document.getElementById("lec-content").value,
+    pdfUrl:      state.lecPdfUrl||null,
+    unlocked:    c.lecs.length===0,
+    passed:false, quiz:null
+  });
+  state.lecPdfUrl=null;
+  document.getElementById("lec-title").value="";
+  document.getElementById("lec-desc").value="";
+  document.getElementById("lec-content").value="";
+  document.getElementById("pdf-label").innerHTML="<strong>اضغط لرفع PDF</strong><br><small>أو اسحب الملف</small>";
+  closeModal("modal-addlec");
+  showCourseDetail(state.currentCourseId);
+  updateStats();
+  notify("تمت إضافة المحاضرة 📚");
+}
+
+function handlePdfSelect(input){
+  const f = input.files[0]; if(!f) return;
+  state.lecPdfUrl = URL.createObjectURL(f);
+  document.getElementById("pdf-label").innerHTML=`<strong style="color:var(--gold2)">${f.name}</strong><br><small>اضغط لتغيير</small>`;
+}
+
+// ══════════════════════════════════════════════
+// LECTURE VIEW
+// ══════════════════════════════════════════════
+function openLec(cid, lid){
+  state.currentCourseId=cid; state.currentLecId=lid;
+  state.quizAnswers={}; state.quizSubmitted=false;
+  document.getElementById("courses-list-view").style.display="none";
+  document.getElementById("course-detail-view").style.display="none";
+  document.getElementById("lec-view").style.display="";
+  renderLecView("content");
+}
+
+function renderLecView(tab){
+  const c   = state.courses.find(x=>x.id===state.currentCourseId);
+  const lec = c.lecs.find(l=>l.id===state.currentLecId);
+  const isAdmin = state.user?.role==="admin";
+  let html = `
+    <h2 style="font-family:'Amiri',serif;font-size:1.5rem;color:var(--gold2);margin-bottom:1.5rem">${lec.title}</h2>
+    <div class="tabs" style="max-width:340px">
+      <button class="tab${tab==="content"?" on":""}" onclick="renderLecView('content')">📄 المحتوى</button>
+      <button class="tab${tab==="quiz"?" on":""}" onclick="renderLecView('quiz')">🧪 الاختبار</button>
+    </div>`;
+
+  if(tab==="content"){
+    html += `<div class="card ct ct-g">`;
+    if(lec.pdfUrl){
+      html += `<div class="pdfbox"><div class="pdfbar"><span>📄 ${lec.title}</span><a href="${lec.pdfUrl}" target="_blank" class="btn bgh sm">تحميل ↓</a></div><iframe class="pdfframe" src="${lec.pdfUrl}"></iframe></div>`;
+    } else {
+      html += `<div style="text-align:center;padding:2rem;color:var(--txt3)">📄 لم يُرفق ملف PDF لهذه المحاضرة</div>`;
+    }
+    if(lec.content){
+      html += `<div style="color:var(--txt);line-height:2.1;font-size:.92rem;white-space:pre-wrap;border-top:1px solid var(--bdr);padding-top:1.2rem;margin-top:1rem">${lec.content}</div>`;
+    }
+    html += `</div>`;
+  }
+
+  if(tab==="quiz"){
+    html += `<div class="qbox"><div class="qhdr"><h3>اختبار المحاضرة</h3><span class="bai">🤖 مولَّد بالذكاء الاصطناعي</span></div>`;
+    if(isAdmin){
+      if(!lec.quiz){
+        html += `<div class="al alw">لم تُولَّد أسئلة بعد</div><button class="btn bt" onclick="generateQuiz()">🤖 توليد الأسئلة</button>`;
+      } else {
+        html += `<div class="al alo">${lec.quiz.length} أسئلة جاهزة ✅</div>`;
+        lec.quiz.forEach((q,i)=>{ html+=`<div style="padding:7px 0;border-bottom:1px solid var(--bdr);color:var(--txt2);font-size:.82rem">${i+1}. ${q.q}</div>`; });
+        html += `<button class="btn bgh sm" style="margin-top:1rem" onclick="generateQuiz()">🔄 إعادة توليد</button>`;
+      }
+    } else {
+      if(lec.passed){
+        html += `<div class="al alo">✅ اجتزت هذا الاختبار. انتقل للمحاضرة التالية.</div>`;
+      } else if(!lec.quiz){
+        html += `<div class="al alw">⏳ لم تُولَّد الأسئلة بعد — انتظر الأستاذ.</div>`;
+      } else {
+        lec.quiz.forEach((q,qi)=>{
+          html+=`<div class="qcard"><p>${qi+1}. ${q.q}</p><div class="qopts">`;
+          q.options.forEach((o,oi)=>{
+            let cls="qo";
+            if(state.quizSubmitted){
+              if(oi===q.correct) cls+=" ok";
+              else if(state.quizAnswers[qi]===oi) cls+=" bad";
+            } else if(state.quizAnswers[qi]===oi) cls+=" sel";
+            html+=`<label class="${cls}"><input type="radio" name="q${qi}" value="${oi}" ${state.quizAnswers[qi]===oi?"checked":""} onchange="setAns(${qi},${oi})">&nbsp;${o}</label>`;
+          });
+          html+="</div>";
+          if(state.quizSubmitted && q.explain) html+=`<div class="qexp">💡 ${q.explain}</div>`;
+          html+="</div>";
+        });
+        if(!state.quizSubmitted){
+          const allAns = Object.keys(state.quizAnswers).length===lec.quiz.length;
+          html+=`<button class="btn bg" ${allAns?"":"disabled"} onclick="submitQuiz()">${allAns?"تسليم الإجابات ✅":"أجب على جميع الأسئلة"}</button>`;
+        } else {
+          const score = lec.quiz.filter((q,i)=>state.quizAnswers[i]===q.correct).length;
+          const passed = score===lec.quiz.length;
+          html+=`<div class="sbox"><div class="sbig">${score}/${lec.quiz.length}</div>`;
+          if(passed) html+=`<p style="color:#4ade80;margin-top:.5rem">🎉 ممتاز! انتقل للمحاضرة التالية</p>`;
+          else html+=`<p style="color:#f87171;margin-top:.5rem">يجب الإجابة صحيحاً على جميع الأسئلة</p>
+                      <button class="btn bo sm" style="margin-top:1rem" onclick="retryQuiz()">إعادة المحاولة 🔄</button>`;
+          html+="</div>";
+        }
+      }
+    }
+    html+="</div>";
+  }
+
+  document.getElementById("lec-view-content").innerHTML=html;
+}
+
+function setAns(qi,oi){ state.quizAnswers[qi]=oi; renderLecView("quiz"); }
+function retryQuiz(){ state.quizAnswers={}; state.quizSubmitted=false; renderLecView("quiz"); }
+
+function submitQuiz(){
+  const c   = state.courses.find(x=>x.id===state.currentCourseId);
+  const lec = c.lecs.find(l=>l.id===state.currentLecId);
+  const score = lec.quiz.filter((q,i)=>state.quizAnswers[i]===q.correct).length;
+  state.quizSubmitted=true;
+  if(score===lec.quiz.length){
+    lec.passed=true;
+    const idx=c.lecs.indexOf(lec);
+    if(c.lecs[idx+1]) c.lecs[idx+1].unlocked=true;
+    notify("أحسنت! انتقل للمحاضرة التالية 🎉");
+  }
+  renderLecView("quiz");
+}
+
+async function generateQuiz(){
+  const c   = state.courses.find(x=>x.id===state.currentCourseId);
+  const lec = c.lecs.find(l=>l.id===state.currentLecId);
+  notify("جارٍ التوليد بالذكاء الاصطناعي...", "⏳");
+  try {
+    const raw = await aiCall(
+      "أنت خبير في النحو والصرف العربي. أنشئ 4 أسئلة اختيار من متعدد من هذه المحاضرة.\n"
+      +"عنوان: "+lec.title+"\nمحتوى: "+(lec.content||lec.title)+"\n"
+      +"أجب فقط بـ JSON: {\"questions\":[{\"q\":\"السؤال\",\"options\":[\"أ\",\"ب\",\"ج\",\"د\"],\"correct\":0,\"explain\":\"الشرح\"}]}"
+    );
+    const parsed = JSON.parse(raw.replace(/```json|```/g,"").trim());
+    lec.quiz = parsed.questions;
+    notify("تم توليد الأسئلة 🤖");
+  } catch(e){ notify("تعذّر التوليد — تحقق من الاتصال","⚠️"); }
+  renderLecView("quiz");
+}
+
+// ══════════════════════════════════════════════
+// EXERCISES
+// ══════════════════════════════════════════════
+const EX_PRESETS = ["الفاعل ونائب الفاعل","المبتدأ والخبر","الحال والتمييز","المفعول به","الصرف والميزان","أسماء الإشارة"];
+
+(function initExPresets(){
+  const ep = document.getElementById("ex-presets");
+  if(ep) ep.innerHTML = EX_PRESETS.map(p=>`<button class="btn bgh sm" onclick="generateExercises('${p}')">${p}</button>`).join("");
+})();
+
+async function generateExercises(preset){
+  const topic = preset || document.getElementById("ex-topic").value.trim();
+  if(!topic) return;
+  const res = document.getElementById("ex-results");
+  res.innerHTML=`<div style="text-align:center;padding:2rem"><span class="spin"></span><p style="margin-top:1rem;color:var(--txt2)">جارٍ التوليد...</p></div>`;
+  try {
+    const raw = await aiCall(
+      "أنت خبير في تعليم النحو العربي. أنشئ 3 تمارين إعراب حول: "+topic+"\n"
+      +"أجب فقط بـ JSON: {\"exercises\":[{\"sentence\":\"الجملة\",\"question\":\"السؤال\",\"hint\":\"التلميح\",\"answer\":\"الإجابة\"}]}"
+    );
+    const p = JSON.parse(raw.replace(/```json|```/g,"").trim());
+    res.innerHTML = p.exercises.map((ex,i)=>`
+      <div class="card" style="margin-bottom:1rem">
+        <div class="ex-s">${ex.sentence}</div>
+        <p style="font-weight:600;color:var(--txt);margin-bottom:.6rem;font-size:.9rem">${ex.question}</p>
+        <div class="ex-hint">💡 ${ex.hint}</div>
+        <button class="btn bgh xs" onclick="toggleAns(this)">إظهار الإجابة النموذجية</button>
+        <div class="ex-ans">${ex.answer}</div>
+      </div>`).join("");
+    notify("تم توليد التمارين 🤖");
+  } catch { res.innerHTML=`<div class="al ale">تعذّر التوليد — تحقق من الاتصال</div>`; }
+}
+
+function toggleAns(btn){
+  const ans = btn.nextElementSibling;
+  ans.classList.toggle("show");
+  btn.textContent = ans.classList.contains("show") ? "إخفاء الإجابة" : "إظهار الإجابة النموذجية";
+}
+
+// ══════════════════════════════════════════════
+// IRAB
+// ══════════════════════════════════════════════
+const IRAB_EX = ["جاءَ الطالبُ المجتهدُ","كتبَ الطالبُ الدرسَ","إنَّ العلمَ نورٌ","يقرأُ الأستاذُ الكتابَ"];
+(function initIrabExamples(){
+  const ie = document.getElementById("irab-examples");
+  if(ie) ie.innerHTML = IRAB_EX.map(e=>`<button class="btn bgh sm" style="font-family:'Amiri',serif" onclick="setIrabEx('${e}')">${e}</button>`).join("");
+})();
+
+function setIrabEx(e){ document.getElementById("irab-input").value=e; analyzeIrab(); }
+
+async function analyzeIrab(){
+  const sent = document.getElementById("irab-input").value.trim();
+  if(!sent) return;
+  const res = document.getElementById("irab-result");
+  const err = document.getElementById("irab-err");
+  err.style.display="none"; res.style.display="none";
+  res.innerHTML=`<div style="text-align:center;padding:2rem"><span class="spin"></span></div>`;
+  res.style.display="block";
+  try {
+    const raw = await aiCall(
+      "أنت خبير في النحو العربي. أعرب الجملة إعراباً تفصيلياً.\n"
+      +"الجملة: "+sent+"\n"
+      +"أجب فقط بـ JSON: {\"sentence\":\"الجملة\",\"parts\":[{\"word\":\"كلمة\",\"pos\":\"النوع\",\"case\":\"الحكم\",\"reason\":\"العلة\",\"sign\":\"العلامة\"}],\"summary\":\"ملخص الإعراب\"}",
+      1200
+    );
+    const d = JSON.parse(raw.replace(/```json|```/g,"").trim());
+    let rows = (d.parts||[]).map(p=>`
+      <tr>
+        <td><span class="wc">${p.word}</span></td>
+        <td style="color:var(--teal2)">${p.pos}</td>
+        <td style="color:var(--gold2)">${p.case}</td>
+        <td>${p.reason}</td>
+        <td style="color:var(--gold3);font-family:'Amiri',serif">${p.sign}</td>
+      </tr>`).join("");
+    res.innerHTML=`
+      <div class="ex-s">${d.sentence}</div>
+      <div style="overflow-x:auto">
+        <table class="itable">
+          <thead><tr><th>الكلمة</th><th>نوعها</th><th>حكمها الإعرابي</th><th>العلة</th><th>علامة الإعراب</th></tr></thead>
+          <tbody>${rows}</tbody>
+        </table>
+      </div>
+      ${d.summary?`<div class="isum">📌 ${d.summary}</div>`:""}`;
+  } catch {
+    res.style.display="none";
+    err.textContent="تعذّر التحليل — تحقق من الاتصال بالإنترنت";
+    err.style.display="block";
+  }
+}
+
+// ══════════════════════════════════════════════
+// DISCUSSION
+// ══════════════════════════════════════════════
+function renderDisc(){
+  const tabs = document.getElementById("disc-tabs");
+  const items = [{id:"all",label:"الكل"}, ...state.courses.map(c=>({id:c.id,label:c.title}))];
+  tabs.innerHTML = items.map(it=>`<button class="tab${state.discFilter===it.id?" on":""}" onclick="setDiscFilter('${it.id}')">${it.label}</button>`).join("");
+  const list = document.getElementById("disc-list");
+  const filtered = state.discFilter==="all" ? state.disc : state.disc.filter(p=>p.cid===state.discFilter);
+  const cName = id => state.courses.find(c=>c.id===id)?.title||id;
+  list.innerHTML = filtered.map(p=>`
+    <div class="dp${p.isProf?" prf":""}">
+      <div class="dh">
+        <div class="dav ${p.isProf?"p":"s"}">${p.init}</div>
+        <div><div class="dauth">${p.author}</div>${p.isProf?`<div class="drole">الأستاذ</div>`:""}</div>
+        <span class="dctag">${cName(p.cid)}</span>
+        <div class="dtime">${p.time}</div>
+      </div>
+      <div class="dtxt">${p.text}</div>
+      <div class="dacts">
+        <button class="dact" onclick="likePost('${p.id}')">👍 ${p.likes}</button>
+        <button class="dact" onclick="toggleReply('${p.id}')">↩️ رد</button>
+      </div>
+      ${(p.replies||[]).map(r=>`
+        <div class="ri">
+          <div class="dh" style="margin-bottom:3px">
+            <div class="dav ${r.isProf?"p":"s"}" style="width:28px;height:28px;font-size:.73rem">${r.init}</div>
+            <div class="dauth" style="font-size:.81rem">${r.author}</div>
+            <div class="dtime">${r.time}</div>
+          </div>
+          <div class="dtxt" style="font-size:.84rem">${r.text}</div>
+        </div>`).join("")}
+      <div id="reply-${p.id}" class="reply-row" style="display:none">
+        <input class="fi" id="reply-txt-${p.id}" style="flex:1;padding:8px 12px;font-size:.84rem" placeholder="ردّك العلمي...">
+        <button class="btn bg sm" onclick="sendReply('${p.id}')">إرسال</button>
+      </div>
+    </div>`).join("");
+}
+
+function setDiscFilter(f){ state.discFilter=f; renderDisc(); }
+function likePost(id){ const p=state.disc.find(x=>x.id===id); if(p) p.likes++; renderDisc(); }
+function toggleReply(id){
+  const r=document.getElementById("reply-"+id);
+  if(r) r.style.display=r.style.display==="none"?"flex":"none";
+}
+function sendReply(id){
+  const txt=document.getElementById("reply-txt-"+id)?.value.trim(); if(!txt) return;
+  const u=state.user; const isProf=u?.role==="admin";
+  const p=state.disc.find(x=>x.id===id);
+  if(p) p.replies.push({id:Date.now(),author:isProf?"أ.د. بن جلول مختار":u?.name||"مجهول",init:isProf?"م":(u?.name||"؟")[0],isProf,text:txt,time:"الآن"});
+  renderDisc(); notify("تم إرسال الرد ↩️");
+}
+function postDisc(){
+  const txt=document.getElementById("disc-new-txt")?.value.trim(); if(!txt) return;
+  const u=state.user; const isProf=u?.role==="admin";
+  state.disc.push({id:"d"+Date.now(),author:isProf?"أ.د. بن جلول مختار":u?.name||"مجهول",init:isProf?"م":(u?.name||"؟")[0],isProf,cid:state.discFilter==="all"?"c1":state.discFilter,text:txt,time:"الآن",likes:0,replies:[]});
+  document.getElementById("disc-new-txt").value="";
+  renderDisc(); notify("تم نشر مداخلتك 💬");
+}
+
+// ══════════════════════════════════════════════
+// DASHBOARD
+// ══════════════════════════════════════════════
+function renderDashboard(){
+  const lists=[
+    state.students.filter(s=>s.status==="pending"),
+    state.students.filter(s=>s.status==="approved"),
+    state.students.filter(s=>s.status==="rejected"),
+  ];
+  document.getElementById("dash-pending").textContent  = lists[0].length;
+  document.getElementById("dash-approved").textContent = lists[1].length;
+  document.getElementById("dash-rejected").textContent = lists[2].length;
+  document.getElementById("dash-lecs").textContent     = state.courses.reduce((a,c)=>a+c.lecs.length,0);
+  renderDashList(lists[state.dashTab]);
+}
+function dashTab(i,btn){
+  state.dashTab=i;
+  document.querySelectorAll("#page-dashboard .tab").forEach(b=>b.classList.remove("on"));
+  btn.classList.add("on");
+  const lists=[
+    state.students.filter(s=>s.status==="pending"),
+    state.students.filter(s=>s.status==="approved"),
+    state.students.filter(s=>s.status==="rejected"),
+  ];
+  renderDashList(lists[i]);
+}
+function renderDashList(list){
+  const stLabel = s => s==="pending"?"معلق":s==="approved"?"مقبول":"مرفوض";
+  const stCls   = s => s==="pending"?"stp":s==="approved"?"sta":"str";
+  const body = document.getElementById("dash-tbody");
+  body.innerHTML = list.map(s=>`
+    <tr>
+      <td style="color:var(--txt);font-weight:600">${s.name}</td>
+      <td>${s.email}</td>
+      <td>${s.univ||"—"}</td>
+      <td>${s.date}</td>
+      <td><span class="st ${stCls(s.status)}">${stLabel(s.status)}</span></td>
+      <td>${s.status==="pending"
+        ?`<div style="display:flex;gap:5px"><button class="btn bgr xs" onclick="approveStudent('${s.id}')">قبول ✓</button><button class="btn br xs" onclick="rejectStudent('${s.id}')">رفض ✗</button></div>`
+        :`<span style="color:var(--txt3);font-size:.74rem">تمّت المعالجة</span>`
+      }</td>
+    </tr>`).join("") || `<tr><td colspan="6" style="text-align:center;padding:2rem;color:var(--txt3)">لا توجد سجلات</td></tr>`;
+}
+function approveStudent(id){
+  const s=state.students.find(x=>x.id===id); if(!s) return;
+  s.status="approved"; renderDashboard(); updateStats();
+  notify("تم قبول "+s.name+" وإرسال بريد القبول ✉️");
+}
+function rejectStudent(id){
+  const s=state.students.find(x=>x.id===id); if(!s) return;
+  s.status="rejected"; renderDashboard(); updateStats();
+  notify("تم رفض "+s.name+" وإشعاره 📨");
+}
+
+// ══════════════════════════════════════════════
+// ANALYTICS
+// ══════════════════════════════════════════════
+function renderAnalytics(){
+  const approved = state.students.filter(s=>s.status==="approved");
+  const cDiv = document.getElementById("analytics-courses");
+  cDiv.innerHTML = state.courses.map(c=>{
+    const avg = approved.length ? approved.reduce((a,s)=>a+(s.prog?.[c.id]||0),0)/approved.length : 0;
+    return `<div class="card ct ct-g" style="text-align:center">
+      <div style="font-family:'Amiri',serif;font-size:1rem;color:var(--gold2);margin-bottom:.4rem">${c.title}</div>
+      <div style="font-size:2rem;font-weight:900;color:var(--gold2)">${Math.round(avg)}%</div>
+      <div style="font-size:.71rem;color:var(--txt3)">متوسط التقدم</div>
+    </div>`;
+  }).join("");
+  const aList = document.getElementById("analytics-list");
+  if(!approved.length){ aList.innerHTML=`<div class="empty"><div class="eic">📊</div><p>لا يوجد طلاب مقبولون بعد</p></div>`; return; }
+  aList.innerHTML = approved.map(s=>{
+    const avg = state.courses.reduce((a,c)=>a+(s.prog?.[c.id]||0),0)/state.courses.length;
+    const cls = avg>=70?"sta":avg>=40?"stp":"str";
+    const lbl = avg>=70?"ممتاز":avg>=40?"متوسط":"ضعيف";
+    return `<div class="abar">
+      <div class="aname">${s.name}</div>
+      <div class="aprog"><div class="afill" style="width:${avg}%"></div></div>
+      <div class="apct">${Math.round(avg)}%</div>
+      <span class="st ${cls}">${lbl}</span>
+    </div>`;
+  }).join("");
+}
+
+// ══════════════════════════════════════════════
+// INIT
+// ══════════════════════════════════════════════
+buildNav();
+</script>
+</body>
+</html>
